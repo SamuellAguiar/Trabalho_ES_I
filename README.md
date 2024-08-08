@@ -40,6 +40,7 @@ A equipe é composta por desenvolvedores full-stack, back-end e front-end, cada 
 O projeto é desenvolvido utilizando as seguintes tecnologias:
 
 - **Linguagem:** PHP
+- **Banco de daods:** SQL
 - **Frameworks:** HTML, CSS, e JavaScript
 
 # Backlog do Produto
