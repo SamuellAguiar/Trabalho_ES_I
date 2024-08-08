@@ -1,102 +1,82 @@
 ## Trabalho de Engenharia de Software I
 
 # Escopo do Sistema
-Este projeto consiste em uma aplicação WEB que permite aos usuários criarem seu pedido, cancelarem seu pedido e ver o valor do pedido à medida que eles editam os ingredientes dela, além de haver uma página de administrador que conta com a possibilidade de cancelar um pedido, receber um relatório dos pedidos registrados, dos ingredientes cadastrados e dos usuários cadastrados.
-- Usuário
-<p>
-Permitir o usuário criar sua pizza;
-Permitir o usuário remover uma pizza do seu carrinho;
-Permitir o usuário saber o valor da sua pizza em tempo real.
-</p>
+Este projeto consiste em uma aplicação WEB que permite aos usuários criarem e personalizarem seus pedidos de pizza, bem como cancelá-los e ver o valor atualizado em tempo real. Além disso, há uma página para o administrador, que pode gerenciar pedidos, usuários e ingredientes, além de gerar relatórios detalhados.
 
-- Administrador
-<p>
-Permitir o administrador conferir as pizzas realizadas;
-Permitir o administrador cancelar um pedido;
-Permitir o administrador ter um relatório de Ingredientes;
-Permitir o administrador ter um relatório de Usuários cadastrados;
-Permitir o administrador ter um relatório de Pedidos.
-</p>
+- **Usuário**
+  - Permitir o usuário criar sua pizza.
+  - Permitir o usuário remover uma pizza do seu carrinho.
+  - Permitir o usuário saber o valor da sua pizza em tempo real.
+
+- **Administrador**
+  - Permitir o administrador conferir as pizzas realizadas.
+  - Permitir o administrador cancelar um pedido.
+  - Permitir o administrador ter um relatório de Ingredientes.
+  - Permitir o administrador ter um relatório de Usuários cadastrados.
+  - Permitir o administrador ter um relatório de Pedidos.
 
 # Equipe
-<li>
-     Cauã Bandeira
-     <ul>
-          Front End
-     </ul>
-</li>
+A equipe é composta por desenvolvedores full-stack, back-end e front-end, cada um responsável por partes específicas do projeto.
 
-<li>
-     Esdras Almeida
-     <ul>
-          Back End
-     </ul>
-</li>
+- **Cauã Bandeira**  
+  - Função: Front End
 
-<li>
-     Gabriel Roberto
-     <ul>
-          Back End
-     </ul>
-</li>
+- **Esdras Almeida**  
+  - Função: Back End
 
-<li>
-     Igor Passos
-     <ul>
-          Front End
-     </ul>
-</li>
+- **Gabriel Roberto**  
+  - Função: Back End
 
-<li>
-     Mariana Vieira
-     <ul>
-          Full Stack
-     </ul>
-</li>
+- **Igor Passos**  
+  - Função: Front End
 
-<li>
-     Samuell Aguiar
-     <ul>
-          Full Stack
-     </ul>
-</li>
+- **Mariana Vieira**  
+  - Função: Full Stack
+
+- **Samuell Aguiar**  
+  - Função: Full Stack
 
 # Tecnologias
+O projeto é desenvolvido utilizando as seguintes tecnologias:
 
-<li>
-    Linguagem: PHP
-</li>
-</br>
-
-<li>
-     Frameworks: HTML, CSS e JavaScript
-</li>
-</br>
+- **Linguagem:** PHP
+- **Frameworks:** HTML, CSS, e JavaScript
 
 # Backlog do Produto
+O backlog do produto detalha as funcionalidades principais que precisam ser implementadas para atender os requisitos do sistema.
 
-1. **Cadastro de Usuário:**
-   - Permitir que novos usuários se cadastrem.
-2. **Criação de Pedido:**
-   - Permitir ao usuário criar um pedido de pizza.
-3. **Personalização de Pizza:**
-   - Permitir ao usuário personalizar sua pizza adicionando ou removendo ingredientes.
-4. **Cálculo do Valor da Pizza:**
-   - Mostrar o valor atualizado da pizza em tempo real enquanto o usuário a personaliza.
-5. **Informar Forma de Pagamento:**
-   - Permitir que o usuário informe a forma de pagamento desejada.
-6. **Geração de Relatórios de Ingredientes:**
-   - Permitir que o administrador gere relatórios com informações sobre os ingredientes disponíveis.
-7. **Geração de Relatórios de Usuários:**
-   - Permitir que o administrador gere relatórios com informações sobre os usuários cadastrados.
-8. **Geração de Relatórios de Pedidos:**
-   - Permitir que o administrador gere relatórios com informações sobre os pedidos realizados.
-9. **Cancelamento de Pedido pelo Usuário:**
-   - Permitir que o usuário cancele um pedido já realizado.
-10. **Cancelamento de Pedido pelo Administrador:**
-    - Permitir que o administrador cancele pedidos em nome dos usuários.
+1. **Cadastro de Usuário:**  
+   Permitir que novos usuários se cadastrem.
+   
+2. **Criação de Pedido:**  
+   Permitir ao usuário criar um pedido de pizza.
+   
+3. **Personalização de Pizza:**  
+   Permitir ao usuário personalizar sua pizza adicionando ou removendo ingredientes.
+   
+4. **Cálculo do Valor da Pizza:**  
+   Mostrar o valor atualizado da pizza em tempo real enquanto o usuário a personaliza.
+   
+5. **Informar Forma de Pagamento:**  
+   Permitir que o usuário informe a forma de pagamento desejada.
+   
+6. **Geração de Relatórios de Ingredientes:**  
+   Permitir que o administrador gere relatórios com informações sobre os ingredientes disponíveis.
+   
+7. **Geração de Relatórios de Usuários:**  
+   Permitir que o administrador gere relatórios com informações sobre os usuários cadastrados.
+   
+8. **Geração de Relatórios de Pedidos:**  
+   Permitir que o administrador gere relatórios com informações sobre os pedidos realizados.
+   
+9. **Cancelamento de Pedido pelo Usuário:**  
+   Permitir que o usuário cancele um pedido já realizado.
+   
+10. **Cancelamento de Pedido pelo Administrador:**  
+    Permitir que o administrador cancele pedidos em nome dos usuários.
 
 # Backlog da Sprint
+O backlog da sprint detalha as histórias de usuário que serão trabalhadas durante a sprint, com as respectivas tarefas e responsáveis.
 
 ### História #1: Como usuário, eu gostaria de me cadastrar na aplicação
 - **Tarefas e responsáveis:**
