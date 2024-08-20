@@ -1,0 +1,173 @@
+-- Este arquivo é fundamental para configurar e inicializar o sistema da pizzaria de forma rápida e eficiente.
+
+-- Cria o banco de dados
+CREATE DATABASE pizzaria;
+
+-- Usa o banco de dados
+USE pizzaria;
+
+-- Cria a tabela bordas
+CREATE TABLE bordas (
+  id int NOT NULL AUTO_INCREMENT,
+  tipo varchar(100) DEFAULT NULL,
+  preco decimal(10,2) NOT NULL DEFAULT '0.00',
+  PRIMARY KEY (id)
+);
+
+-- Insere tuplas em bordas
+INSERT INTO bordas (tipo, preco) VALUES ("Sem Borda", 0.00),
+("Cheddar", 6.00),
+("Catupiry", 8.00),
+("Cream Cheese",7.00),
+("Banana", 9.00),
+("Chocolate", 10.00);
+
+-- Cria a tabela massas 
+CREATE TABLE massas (
+  id int NOT NULL AUTO_INCREMENT,
+  tipo varchar(100) DEFAULT NULL,
+  preco decimal(10,2) NOT NULL DEFAULT '0.00',
+  PRIMARY KEY (id)
+);
+
+-- Insere tuplas em massas
+INSERT INTO massas (tipo, preco) VALUES ("Massa Comum", 10.00),
+("Massa Temperada", 12.00),
+("Massa Borboleta", 15.00),
+("Massa Vulcão", 18.00),
+("Massa Estrela", 20.00);
+
+-- Cria a tabela tamanhos 
+CREATE TABLE tamanhos (
+  id int NOT NULL AUTO_INCREMENT,
+  tipo varchar(100) DEFAULT NULL,
+  preco decimal(10,2) NOT NULL DEFAULT '0.00',
+  PRIMARY KEY (id)
+);
+
+-- Insere tuplas em tamanhos
+INSERT INTO tamanhos (tipo, preco) VALUES("Pequena (4 Fatias)", 15.00),
+("Média (6 Fatias)", 20.00),
+("Grande (8 Fatias)", 25.00);
+
+-- Cria a tabela ingredientes 
+CREATE TABLE ingredientes (
+  id int NOT NULL AUTO_INCREMENT,
+  nome varchar(100) DEFAULT NULL,
+  preco decimal(10,2) NOT NULL DEFAULT '0.00',
+  PRIMARY KEY (id)
+);
+
+-- Insere tuplas em ingredientes
+INSERT INTO ingredientes (nome, preco) VALUES ("Molho de tomate", 6.00),
+("Carne seca", 8.00),
+("mussarela", 7.00),
+("Cream cheese", 10.00),
+("Cebola roxa", 7.00), 
+("Cebolinha", 9.00),
+("Orégano", 5.00),
+("Parmesão", 8.00),
+("Bacon", 10.00),
+("Catupiry", 7.00),
+("Tomate", 6.00),
+("Tomate cereja", 7.00),
+("Manjericão", 5.00),
+("Geleia de pimenta", 11.00),
+("Milho", 6.50),
+("Peito de peru", 10.00),
+("Alho poró", 7.00),
+("Contrafilé", 9.00),
+("Creme de alho", 8.00),
+("Geleia de amora", 10.00),
+("Provolone ralado", 12.00),
+("Parmesão", 8.00),
+("Azeitona", 5.00),
+("Molho ao sugo", 15.00),
+("Frango", 10.00),
+("Cebola", 8.00),
+("Cheddar", 9.00),
+("Palmito", 6.50),
+("Pimenta de biquinho", 8.00),
+("Molho de pimenta", 9.00),
+("Presunto", 7.50),
+("Ovo", 6.00),
+("Strogonoff de frango", 11.00),
+("Batata palha", 7.50),
+("Molho à bolonhesa", 10.00),
+("Geleia de frutas vermelhas", 15.00),
+("Lombo canadense", 15.00),
+("Bacon defumado", 11.50),
+("Atum", 13.00),
+("Camarão", 20.00),
+("Gorgonzola", 13.00),
+("Champignon", 18.00),
+("Milho verde", 8.00),
+("Pepperoni", 11.00),
+("Pimenta calabresa", 9.00),
+("Salaminho", 8.00),
+("Abacaxi", 9.00),
+("Linguiça calabresa", 10.00),
+("Banana", 9.00),
+("Canela", 9.50),
+("Açúcar", 8.00),
+("Calabresa", 11.50),
+("Cereja", 9.50), 
+("Figo", 10.00),
+("Pêssego", 8.50),
+("Ameixa", 8.00),
+("Lombo defumado", 11.50),
+("Queijo prato", 7.50),
+("Leite condensado", 10.00),
+("Brócolis", 8.00),
+("Cebolinha", 6.00),
+("Ervilha", 8.00),
+("Rúcula", 10.00),
+("Escarola", 15.00),
+("Pimenta do reino", 9.00),
+("Aliche", 11.00);
+
+-- Cria a tabela pizzas 
+CREATE TABLE pizzas (
+  id int NOT NULL AUTO_INCREMENT,
+  tamanho_id int NOT NULL,
+  borda_id int NOT NULL,
+  massa_id int NOT NULL,
+  preco_total decimal(10,2) NOT NULL DEFAULT '0.00',
+  PRIMARY KEY (id),
+  KEY tamanho_id (tamanho_id),
+  KEY borda_id (borda_id),
+  KEY massa_id (massa_id),
+  FOREIGN KEY (tamanho_id) REFERENCES tamanhos (id),
+  FOREIGN KEY (borda_id) REFERENCES bordas (id),
+  FOREIGN KEY (massa_id) REFERENCES massas (id)
+);
+
+-- Cria a tabela pedidos
+CREATE TABLE pedidos (
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    pizza_id INT NOT NULL,
+    preco_total DECIMAL(10, 2) NOT NULL,
+    foreign key (pizza_id) references pizzas(id)
+);
+
+-- Cria a tabela pizza_ingrediente 
+CREATE TABLE pizza_ingrediente (
+  pizza_id int NOT NULL,
+  ingrediente_id int NOT NULL,
+  PRIMARY KEY pizza_id (pizza_id),
+  KEY ingrediente_id (ingrediente_id),
+  FOREIGN KEY (pizza_id) REFERENCES pizzas (id),
+  FOREIGN KEY (ingrediente_id) REFERENCES ingredientes (id)
+);
+
+-- Cria a tabela usuarios 
+CREATE TABLE usuarios (
+  id int(10) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  username varchar(30) DEFAULT NULL,
+  password varchar(40) DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+-- Insere tuplas em usuarios
+INSERT INTO usuarios (username, password) VALUES ("admin", "admin"),
+("Samuell", "12345");
