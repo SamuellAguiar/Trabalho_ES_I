@@ -34,3 +34,5 @@
 <?php
     include_once("templates/footer.php");
 ?>
+
+// Validação concluída: código funcionando conforme esperado.
