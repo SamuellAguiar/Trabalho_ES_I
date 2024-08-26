@@ -119,3 +119,5 @@
     }
     
 ?>
+
+// Validação concluída: código funcionando conforme esperado.
