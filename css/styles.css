@@ -1,0 +1,288 @@
+html, body{
+    height: 100%;
+}
+
+/*NAVBAR*/
+#brand-logo{
+    width: 50px;
+}
+
+.navbar.navbar-expand-lg{
+    background-color: #000;
+    font-weight: bold;
+}
+
+.navbar.navbar-expand-lg a{
+    color: #FFF;
+}
+
+.user-icon{
+  margin-right: 20px;
+}
+
+/*HOME*/
+#main-banner{
+    background-image: url("../img/pizza-banner2.jpg");
+    height: 300px;
+    background-position: center;
+    background-size:cover;
+    width: 100%;
+    background-position-y: -300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    
+}
+
+#main-banner h1{
+    color: #FFF;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    padding: 30px;
+    text-transform: uppercase;
+    width: 500px;
+
+}
+
+#main-container {
+    margin-bottom: 100px;
+    
+    text-align: center;
+    min-height: 50%;
+}
+
+#main-container h2{
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.row{
+    margin: 0;
+}
+
+#pizza-form{
+    max-width: 550px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#pizza-form label {
+    font-weight: bold;
+}
+  
+.btn.btn-primary {
+    background-color: #000;
+    border-color: #000;
+
+}
+
+/* ALERTA */
+.alert {
+    border-radius: 0;
+    text-align: center;
+    margin-bottom: 0;
+    font-weight: bold;
+    padding: 20px;
+    font-size: 18px;
+}
+  
+.alert.alert-success {
+    border: 2px solid #155724;
+}
+  
+  .alert.alert-warning {
+    border: 2px solid #856404;
+}
+  
+  .alert p {
+    margin-bottom: 0;
+}
+html, body {
+  height: 100%;
+}
+
+/* NAVBAR */
+#brand-logo {
+  width: 35px;
+}
+
+
+.navbar.navbar-expand-lg {
+  background-color: #000;
+  font-weight: bold;
+}
+
+.navbar.navbar-expand-lg a {
+  color: #FFF;
+}
+
+
+.car-icon {
+  font-size: 24px;
+  color: #FFF;
+  cursor: pointer;
+  margin-left: 10px;
+  width: 30px;
+}
+
+
+/* DASHBOARD */
+/* Adiciona estilo para melhorar a apresentação da lista de ingredientes */
+.table ul.ingredientes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+.table ul.ingredientes-list li {
+  margin-bottom: 5px;
+  list-style: none;
+
+}
+
+
+
+/* Adiciona estilo para centralizar o texto verticalmente nas células da tabela */
+.table td, .table th {
+  vertical-align: middle;
+ 
+}
+
+/* Adiciona estilo para espaçamento entre as células da tabela */
+.table td, .table th {
+  padding: 10px;
+}
+
+/* Adiciona estilo para o botão de exclusão */
+.delete-btn {
+  border: 2px solid #d9534f;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.delete-btn p {
+  margin: 0;
+  color: #721c24;
+}
+
+.delete-btn i {
+  color: #721c24;
+  font-size: 15px;
+}
+
+/* Adiciona estilo para o ícone de exclusão */
+.delete-btn i {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.confirm-btn{
+  border: 2px solid #5cb85c;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.confirm-btn p {
+  margin: 0;
+  color: #155724;
+}
+
+.confirm-btn i{
+  color: #155724;
+  font-size: 15px;
+
+}
+
+.confirm-btn i {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+/*    Admin     */
+
+
+
+.ingredientes-list-adm li{
+  display: flex;
+  justify-content: center ;
+  align-items: center;
+  
+}
+
+
+/*FOOTER*/
+footer{
+    position: relative;
+    width: 100%;
+    height: 80px;
+    background-color: #000;
+    color: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+
+/*RESPONSIVIDADE*/
+@media(max-width: 425px) {
+
+  #main-banner {
+    background-position-y: 0;
+  }
+
+  #main-banner h1 {
+    padding: 10px;
+  }
+
+  #main-container {
+    margin-bottom: 0;
+  }
+
+  #main-container .container {
+    padding: 10px;
+  }
+
+  .form-group .btn.btn-primary {
+    width: 100%;
+    height: 50px;
+    margin-top: 15px;
+    text-transform: uppercase;
+  }
+
+  .table-container {
+    padding: 0;
+    
+  }
+
+  .table td, .table th {
+    padding: 0.5rem;
+  }
+
+  th span {
+    display: none;
+  }
+
+  .table thead th:nth-child(5),
+  .table thead th:nth-child(6),
+  .table tbody td:nth-child(5),
+  .table tbody td:nth-child(6) 
+  {
+  display: none;
+  }
+
+}
+
+.total-container {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #4caf50; /* Verde */
+
+}
