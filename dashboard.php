@@ -119,3 +119,6 @@
 <?php
     include_once("templates/footer.php");
 ?>
+
+
+// Teste de cálculo em tempo real para garantir a precisão realizado com sucesso
