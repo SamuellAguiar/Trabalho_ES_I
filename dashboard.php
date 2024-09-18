@@ -105,6 +105,17 @@
         </div>
     </div>
 
+     <div class="col-md-12 mb-4">
+        <!-- Adicionando um select com opções de método de pagamento -->
+        <label for="metodoPagamento">Método de Pagamento:</label>
+        <select name="metodoPagamento" id="metodoPagamento" class="form-control">
+            <option value="cartao">Cartão de Crédito</option>
+            <option value="boleto">Boleto Bancário</option>
+            <option value="paypal">PayPal</option>
+            <!-- Adicione mais opções conforme necessário -->
+        </select>
+    </div>
+
     <script>
     function confirmarPedido() {
     var selectedOrders = document.querySelectorAll('input[name="selected_orders[]"]:checked');
