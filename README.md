@@ -138,3 +138,5 @@ O backlog da sprint detalha as histórias de usuário que serão trabalhadas dur
   - Criar a interface de administrador para cancelamento de pedidos [Igor Passos - Front-end]
   - Desenvolver a lógica no backend para que o administrador possa cancelar pedidos [Esdras Almeida - Back-end]
   - Testar o cancelamento de pedidos por parte do administrador [Mariana Vieira - Full-stack]
+# Diagrama de classes
+![Diagrama de classes](img/diagram.jpg)
