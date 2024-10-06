@@ -48,6 +48,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["relatorio"])) {
             $titulo = "Relatório de Ingredientes";
             $colunas = ["id", "nome", "preco"];
             break;
+
+	case "usuarios":
+            $query = "SELECT * FROM usuarios";
+            $titulo = "Relatório de Usuários";
+            $colunas = ["id", "username", "password"];
+            break;
         
 	default:
             echo "Relatório não encontrado.";
