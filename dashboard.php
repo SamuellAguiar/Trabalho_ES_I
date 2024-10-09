@@ -103,8 +103,15 @@ include_once("process/orders.php");
                     <p class="confirm">Confirmar Pedido <i class="fas fa-check"></i></p>
                 </button>
             </div>
-
-
+            <div class="col-md-12 mb-4">
+                    <form action="process/orders.php" method="POST" id="cancelForm">
+                    <input type="hidden" name="type" value="delete">
+                    <input type="hidden" name="id" value="<?= $pizza["id"] ?>">
+                    <button type="submit" class="delete-btn" onclick="cancelarPedido()">
+                         <p class="cancel">Cancelar o pedido <i class="fas fa-times"></i></p>
+                    </button>
+                    </form>
+               </div>
         </div>
     </div>
 
@@ -120,16 +127,53 @@ include_once("process/orders.php");
     </div>
 
     <script>
-        function confirmarPedido() {
-            var selectedOrders = document.querySelectorAll('input[name="selected_orders[]"]:checked');
-            if (selectedOrders.length > 0) {
-                alert("Pedido confirmado! Redirecionando para a página de confirmação...");
-                window.location.href = "index.php";
-            } else {
-                alert("Por favor, selecione pelo menos um pedido para confirmar.");
-            }
-        }
-    </script>
+     function confirmarPedido() {
+     var selectedOrders = document.querySelectorAll('input[name="selected_orders[]"]:checked');
+     if (selectedOrders.length > 0) {
+          alert("Pedido confirmado! Redirecionando para a página de confirmação...");
+          window.location.href = "index.php";
+     } else {
+          alert("Por favor, selecione pelo menos um pedido para confirmar.");
+     }
+}
+     function cancelarPedido() {
+     var selectedOrders = document.querySelectorAll('input[name="selected_orders[]"]:checked');
+     if (selectedOrders.length > 0) {
+          var cancelForm = document.getElementById('cancelForm');
+          selectedOrders.forEach(function(order) {
+               var input = document.createElement('input');
+               input.type = 'hidden';
+               input.name = 'selected_orders[]';
+               input.value = order.value;
+               cancelForm.appendChild(input);
+          });
+          cancelForm.submit();
+     } else {
+          alert("Por favor, selecione pelo menos um pedido para cancelar.");
+     }
+}
+
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+     $type = $_POST['type'];
+     if ($type === 'delete') {
+          $id = $_POST['id'];
+          // Substitua com a consulta SQL correta para excluir um pedido
+          $query = "DELETE FROM pedidos WHERE id = ?";
+          $stmt = $conn->prepare($query);
+          $stmt->bind_param('i', $id);
+          $stmt->execute();
+          if ($stmt->affected_rows > 0) {
+               $_SESSION['message'] = 'Pedido excluído com sucesso';
+          } else {
+               $_SESSION['message'] = 'Erro ao excluir pedido';
+          }
+          header('Location: ../dashboard.php');
+          exit();
+     }
+}
+?>
+</script>
     <?php
     include_once("templates/footer.php");
     ?>
