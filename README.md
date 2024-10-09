@@ -143,3 +143,12 @@ O backlog da sprint detalha as histórias de usuário que serão trabalhadas dur
 
 # Diagrama de casos de uso
 ![Diagrama de casos de uso](img/pizza.jpg)
+
+# Protótipos
+![Página de início](img/home.png)
+
+![Página de dashboard](img/Sem-título.png)
+
+![Página de login](img/login.png)
+
+![Página de administrador](img/admin.png)
