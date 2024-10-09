@@ -71,9 +71,20 @@ function inserirPizza($conn, $tamanho, $borda, $massa, $precoTotal)
 }
 
 // Função para inserir ingredientes da pizza
+// function inserirIngredientesPizza($conn, $pizzaId, $ingredientes)
+// {
+//     $stmt = $conn->prepare("INSERT INTO pizza_ingrediente (pizza_id, ingrediente_id) VALUES (:pizza, :ingrediente)");
+
+//     foreach ($ingredientes as $ingrediente) {
+//         $stmt->bindParam(":pizza", $pizzaId, PDO::PARAM_INT);
+//         $stmt->bindParam(":ingrediente", $ingrediente, PDO::PARAM_INT);
+//         $stmt->execute();
+//     }
+// }
+
 function inserirIngredientesPizza($conn, $pizzaId, $ingredientes)
 {
-    $stmt = $conn->prepare("INSERT INTO pizza_ingrediente (pizza_id, ingrediente_id) VALUES (:pizza, :ingrediente)");
+    $stmt = $conn->prepare("INSERT INTO pizza_ingrediente (pizza_id, ingrediente_id) VALUES (:pizza, :ingrediente) ON DUPLICATE KEY UPDATE ingrediente_id = ingrediente_id");
 
     foreach ($ingredientes as $ingrediente) {
         $stmt->bindParam(":pizza", $pizzaId, PDO::PARAM_INT);
@@ -81,6 +92,7 @@ function inserirIngredientesPizza($conn, $pizzaId, $ingredientes)
         $stmt->execute();
     }
 }
+
 
 // Função para inserir um pedido no banco de dados
 function inserirPedido($conn, $pizzaId, $precoTotal)
