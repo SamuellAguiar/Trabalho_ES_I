@@ -43,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["relatorio"])) {
 
 
      switch ($relatorioId) {
+          
           case "ingredientes":
                $query = "SELECT * FROM ingredientes";
                $titulo = "Relatório de Ingredientes";

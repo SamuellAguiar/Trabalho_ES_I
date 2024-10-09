@@ -3,9 +3,9 @@
 session_start();
 
 $user = "root";
-$pass = "Samlat03";
+$pass = "root";
 $db = "pizzaria";
-$host = "localhost:3307";
+$host = "localhost";
 
 try {
 

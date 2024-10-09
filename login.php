@@ -14,6 +14,7 @@ include_once("templates/headerLogin.php");
 
 <body>
     <div class="login-container">
+
         <form action="process/processLogin.php" method="post">
             <h2>Login</h2>
             <?php
@@ -29,12 +30,15 @@ include_once("templates/headerLogin.php");
             <input type="password" id="password" name="password" required>
 
             <button type="submit">Entrar</button>
+
+            <!-- Adicionando o botão para registrar -->
+            <div class="register-link">
+                <p>Não tem uma conta?</p>
+                <a href="register.php">Registrar-se</a>
+            </div>
         </form>
-        <div class="register-link">
-            <p>Não tem uma conta?</p>
-            <a href="register.php">Registrar-se</a>
-        </div>
     </div>
+
 </body>
 
 </html>
