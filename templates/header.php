@@ -40,10 +40,10 @@ if(isset($_SESSION["msg"])){
         <a href="index.php" class="navbar-brand">
             <img src="img/pizza.svg" alt="Pizzaria" id="brand-logo">
         </a>
-       
+    
 
 
-       </div>
+    </div>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
@@ -51,8 +51,8 @@ if(isset($_SESSION["msg"])){
                 </li>
             </ul>
         </div>
-         <!-- Adicione um ícone de usuário do Bootstrap e um link para a página de login -->
-         <a href="login.php" class="user-icon">
+        <!-- Adicione um ícone de usuário do Bootstrap e um link para a página de login -->
+        <a href="login.php" class="user-icon">
                 <i class="fas fa-user"></i>
             </a>
         <a href="dashboard.php" class="car-icon">

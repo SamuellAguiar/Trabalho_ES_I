@@ -1,154 +1,161 @@
 <?php
 
-  include_once("conn.php");
+include_once("conn.php");
 
-  $method = $_SERVER["REQUEST_METHOD"];
+// Função para obter os pedidos
+function obterPedidos($conn)
+{
+  $pedidosQuery = $conn->query("SELECT * FROM pedidos;");
+  return $pedidosQuery->fetchAll(PDO::FETCH_ASSOC);
+}
 
-  if($method === "GET") {
+// Função para buscar dados da pizza pelo ID
+function buscarPizza($conn, $pizzaId)
+{
+  $pizzaQuery = $conn->prepare("SELECT * FROM pizzas WHERE id = :pizza_id");
+  $pizzaQuery->bindParam(":pizza_id", $pizzaId);
+  $pizzaQuery->execute();
+  return $pizzaQuery->fetch(PDO::FETCH_ASSOC);
+}
 
-    $pedidosQuery = $conn->query("SELECT * FROM pedidos;");
+// Função para buscar o tamanho da pizza
+function buscarTamanho($conn, $tamanhoId)
+{
+  $tamanhoQuery = $conn->prepare("SELECT * FROM tamanhos WHERE id = :tamanho_id");
+  $tamanhoQuery->bindParam(":tamanho_id", $tamanhoId);
+  $tamanhoQuery->execute();
+  return $tamanhoQuery->fetch(PDO::FETCH_ASSOC)["tipo"];
+}
 
-    $pedidos = $pedidosQuery->fetchAll();
+// Função para buscar a borda da pizza
+function buscarBorda($conn, $bordaId)
+{
+  $bordaQuery = $conn->prepare("SELECT * FROM bordas WHERE id = :borda_id");
+  $bordaQuery->bindParam(":borda_id", $bordaId);
+  $bordaQuery->execute();
+  return $bordaQuery->fetch(PDO::FETCH_ASSOC)["tipo"];
+}
 
-    $pizzas = [];
+// Função para buscar a massa da pizza
+function buscarMassa($conn, $massaId)
+{
+  $massaQuery = $conn->prepare("SELECT * FROM massas WHERE id = :massa_id");
+  $massaQuery->bindParam(":massa_id", $massaId);
+  $massaQuery->execute();
+  return $massaQuery->fetch(PDO::FETCH_ASSOC)["tipo"];
+}
 
-    // Montando pizza
-    foreach($pedidos as $pedido) {
+// Função para buscar os ingredientes da pizza
+function buscarIngredientes($conn, $pizzaId)
+{
+  $ingredientesQuery = $conn->prepare("SELECT * FROM pizza_ingrediente WHERE pizza_id = :pizza_id");
+  $ingredientesQuery->bindParam(":pizza_id", $pizzaId);
+  $ingredientesQuery->execute();
+  return $ingredientesQuery->fetchAll(PDO::FETCH_ASSOC);
+}
 
-      $pizza = [];
+// Função para buscar o nome dos ingredientes
+function buscarNomeIngrediente($conn, $ingredienteId)
+{
+  $ingredienteQuery = $conn->prepare("SELECT * FROM ingredientes WHERE id = :ingrediente_id");
+  $ingredienteQuery->bindParam(":ingrediente_id", $ingredienteId);
+  $ingredienteQuery->execute();
+  return $ingredienteQuery->fetch(PDO::FETCH_ASSOC)["nome"];
+}
 
-      // definir um array para a pizza
-      $pizza["id"] = $pedido["pizza_id"];
+// Função para montar a pizza a partir do pedido
+function montarPizza($conn, $pedidos)
+{
+  $pizzas = [];
 
-      // resgatando a pizza
-      $pizzaQuery = $conn->prepare("SELECT * FROM pizzas WHERE id = :pizza_id");
+  foreach ($pedidos as $pedido) {
+    $pizza = [];
+    $pizza["id"] = $pedido["pizza_id"];
 
-      $pizzaQuery->bindParam(":pizza_id", $pizza["id"]);
+    // Buscar dados da pizza
+    $pizzaData = buscarPizza($conn, $pizza["id"]);
 
-      $pizzaQuery->execute();
+    // Buscar tamanho, borda e massa
+    $pizza["tamanho"] = buscarTamanho($conn, $pizzaData["tamanho_id"]);
+    $pizza["borda"] = buscarBorda($conn, $pizzaData["borda_id"]);
+    $pizza["massa"] = buscarMassa($conn, $pizzaData["massa_id"]);
 
-      $pizzaData = $pizzaQuery->fetch(PDO::FETCH_ASSOC);
+    // Buscar ingredientes
+    $ingredientes = buscarIngredientes($conn, $pizza["id"]);
+    $ingredientesDaPizza = [];
 
-      // resgatando o tamanho da pizza
-
-
-      $tamanhoQuery = $conn->prepare("SELECT * FROM tamanhos WHERE id = :tamanho_id");
-
-      $tamanhoQuery->bindParam(":tamanho_id", $pizzaData["tamanho_id"]);
-
-      $tamanhoQuery->execute();
-
-      $tamanho = $tamanhoQuery->fetch(PDO::FETCH_ASSOC);
-
-      $pizza["tamanho"] = $tamanho["tipo"];
-
-
-      // resgatando a borda da pizza
-      $bordaQuery = $conn->prepare("SELECT * FROM bordas WHERE id = :borda_id");
-
-      $bordaQuery->bindParam(":borda_id", $pizzaData["borda_id"]);
-
-      $bordaQuery->execute();
-
-      $borda = $bordaQuery->fetch(PDO::FETCH_ASSOC);
-
-      $pizza["borda"] = $borda["tipo"];
-
-      // resgatando a borda da pizza
-      $massaQuery = $conn->prepare("SELECT * FROM massas WHERE id = :massa_id");
-
-      $massaQuery->bindParam(":massa_id", $pizzaData["massa_id"]);
-
-      $massaQuery->execute();
-
-      $massa = $massaQuery->fetch(PDO::FETCH_ASSOC);
-
-      $pizza["massa"] = $massa["tipo"];
-
-      // resgatando os ingredientes da pizza
-      $ingredientesQuery = $conn->prepare("SELECT * FROM pizza_ingrediente WHERE pizza_id = :pizza_id");
-
-      $ingredientesQuery->bindParam(":pizza_id", $pizza["id"]);
-
-      $ingredientesQuery->execute();
-
-      $ingredientes = $ingredientesQuery->fetchAll(PDO::FETCH_ASSOC);
-
-      // resgatando o nome dos ingredientes
-      $ingredientesDaPizza = [];
-
-      $ingredienteQuery = $conn->prepare("SELECT * FROM ingredientes WHERE id = :ingrediente_id");
-
-       //resgatando o preço total da pizza
-       $pizza["precoTotal"] = $pedido["preco_total"];
-
-      foreach($ingredientes as $ingrediente) {
-
-        $ingredienteQuery->bindParam(":ingrediente_id", $ingrediente["ingrediente_id"]);
-
-        $ingredienteQuery->execute();
-
-        $ingredientePizza = $ingredienteQuery->fetch(PDO::FETCH_ASSOC);
-
-        array_push($ingredientesDaPizza, $ingredientePizza["nome"]);
-
-      }
-
-      $pizza["ingredientes"] = $ingredientesDaPizza;
-
-      // Adicionar o array de pizza, ao array das pizzas
-      array_push($pizzas, $pizza);
-
+    foreach ($ingredientes as $ingrediente) {
+      $nomeIngrediente = buscarNomeIngrediente($conn, $ingrediente["ingrediente_id"]);
+      array_push($ingredientesDaPizza, $nomeIngrediente);
     }
 
+    $pizza["ingredientes"] = $ingredientesDaPizza;
 
-  } else if($method === "POST") {
+    // Adicionar preço total da pizza
+    $pizza["precoTotal"] = $pedido["preco_total"];
 
-    // verificando tipo de POST
-    $type = $_POST["type"];
-
-    // deletar pedido
-    
-
-      if ($type === "delete") {
-        $selectedOrders = isset($_POST["selected_orders"]) ? $_POST["selected_orders"] : [];
-
-        if (!empty($selectedOrders)) {
-            $placeholders = implode(',', array_fill(0, count($selectedOrders), '?'));
-
-            $deleteQuery = $conn->prepare("DELETE FROM pedidos WHERE pizza_id IN ($placeholders)");
-
-            foreach ($selectedOrders as $index => $pizzaId) {
-                $deleteQuery->bindValue($index + 1, $pizzaId, PDO::PARAM_INT);
-            }
-
-            $deleteQuery->execute();
-
-            $_SESSION["msg"] = "Pedido(s) cancelado(s) com sucesso!";
-            $_SESSION["status"] = "success";
-        }
-    } elseif ($type === "insert") {
-        // Inserir novo pedido
-        $pizzaId = $_POST["id"];
-        $precoTotal = $_POST["preco_total"];
-
-        $stmt = $conn->prepare("INSERT INTO pedidos (pizza_id, preco_total) VALUES (:pizza_id, :preco_total) ON DUPLICATE KEY UPDATE preco_total = :preco_total");
-        $stmt->bindParam(":pizza_id", $pizzaId, PDO::PARAM_INT);
-        $stmt->bindParam(":preco_total", $precoTotal, PDO::PARAM_STR);
-
-        $stmt->execute();
-
-        $_SESSION["msg"] = "Pedido inserido com sucesso!";
-        $_SESSION["status"] = "success";
-    }
-
-      if (strpos($_SERVER['HTTP_REFERER'], 'admin.php') !== false) {
-        header("Location: ../admin.php");
-      } else {
-        header("Location: ../dashboard.php");
-      }
-    
-    exit();
-  
+    // Adicionar ao array de pizzas
+    array_push($pizzas, $pizza);
   }
-?>
+
+  return $pizzas;
+}
+
+// Função para deletar pedidos
+function deletarPedidos($conn, $selectedOrders)
+{
+  if (!empty($selectedOrders)) {
+    $placeholders = implode(',', array_fill(0, count($selectedOrders), '?'));
+    $deleteQuery = $conn->prepare("DELETE FROM pedidos WHERE pizza_id IN ($placeholders)");
+
+    foreach ($selectedOrders as $index => $pizzaId) {
+      $deleteQuery->bindValue($index + 1, $pizzaId, PDO::PARAM_INT);
+    }
+
+    $deleteQuery->execute();
+    $_SESSION["msg"] = "Pedido(s) cancelado(s) com sucesso!";
+    $_SESSION["status"] = "success";
+  }
+}
+
+// Função para inserir um novo pedido
+function inserirPedido($conn, $pizzaId, $precoTotal)
+{
+  $stmt = $conn->prepare("INSERT INTO pedidos (pizza_id, preco_total) VALUES (:pizza_id, :preco_total) ON DUPLICATE KEY UPDATE preco_total = :preco_total");
+  $stmt->bindParam(":pizza_id", $pizzaId, PDO::PARAM_INT);
+  $stmt->bindParam(":preco_total", $precoTotal, PDO::PARAM_STR);
+  $stmt->execute();
+
+  $_SESSION["msg"] = "Pedido inserido com sucesso!";
+  $_SESSION["status"] = "success";
+}
+
+// Código principal que lida com as requisições
+$method = $_SERVER["REQUEST_METHOD"];
+
+if ($method === "GET") {
+  $pedidos = obterPedidos($conn);
+  $pizzas = montarPizza($conn, $pedidos);
+
+} else if ($method === "POST") {
+  $type = $_POST["type"];
+
+  if ($type === "delete") {
+    $selectedOrders = isset($_POST["selected_orders"]) ? $_POST["selected_orders"] : [];
+    deletarPedidos($conn, $selectedOrders);
+
+  } elseif ($type === "insert") {
+    $pizzaId = $_POST["id"];
+    $precoTotal = $_POST["preco_total"];
+    inserirPedido($conn, $pizzaId, $precoTotal);
+  }
+
+  // Redirecionamento após ação
+  if (strpos($_SERVER['HTTP_REFERER'], 'admin.php') !== false) {
+    header("Location: ../admin.php");
+  } else {
+    header("Location: ../dashboard.php");
+  }
+
+  exit();
+}

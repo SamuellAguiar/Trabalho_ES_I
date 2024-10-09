@@ -7,18 +7,18 @@ $dbname = "pizzaria";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-if($conn->connect_error){
+if ($conn->connect_error) {
      die("Falha na conexão com o banco de dados: " . $conn->connect_error);
 }
 
 // Processar dados de registro
-if( $_SERVER["REQUEST_METHOD"]  == "POST"){
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
      $username = $_POST['username'];
      $password = $_POST['password'];
      $confirmPassword = $_POST['confirmPassword'];
 
      // Verificar se as senhas coincidem
-     if($password != $confirmPassword){
+     if ($password != $confirmPassword) {
           header("Location: ../register.php?error=As senhas não coincidem");
           exit();
      }
@@ -27,7 +27,7 @@ if( $_SERVER["REQUEST_METHOD"]  == "POST"){
      $sql = "SELECT * FROM usuarios WHERE username='$username'";
      $result = $conn->query($sql);
 
-     if($result->num_rows > 0){
+     if ($result->num_rows > 0) {
           header("Location: ../register.php?error=O usuário já existe");
           exit();
      }
@@ -35,11 +35,10 @@ if( $_SERVER["REQUEST_METHOD"]  == "POST"){
      // Registrar o novo usuário
      $sql = "INSERT INTO usuarios (username, password) VALUES ('$username', '$password')";
 
-     if($conn->query($sql) === TRUE){
+     if ($conn->query($sql) === TRUE) {
           header("Location: ../login.php");
-     } else{
+     } else {
           echo "Erro: " . $sql . "<br>" . $conn->error;
      }
 }
 ?>
-

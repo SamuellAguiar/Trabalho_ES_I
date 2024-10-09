@@ -147,7 +147,6 @@ html, body {
 /* Adiciona estilo para centralizar o texto verticalmente nas células da tabela */
 .table td, .table th {
   vertical-align: middle;
- 
 }
 
 /* Adiciona estilo para espaçamento entre as células da tabela */

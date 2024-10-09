@@ -39,10 +39,10 @@ if(isset($_SESSION["msg"])){
         <a href="index.php" class="navbar-brand">
             <img src="img/pizza.svg" alt="Pizzaria" id="brand-logo">
         </a>
-       
+    
 
 
-       </div>
+    </div>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
