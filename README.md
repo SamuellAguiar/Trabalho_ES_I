@@ -104,7 +104,7 @@ O backlog da sprint detalha as histórias de usuário que serão trabalhadas dur
   - Desenvolver a lógica para fornecer o valor dos ingredientes e calcular o preço total [Igor Passos - Front-end]
   - Testar o cálculo em tempo real para garantir a precisão dos preços [Samuell Aguiar - Full-stack]
 
-### História #5: Como usuário, eu gostaria de informar a forma de pagamento
+### História #5: Como usuário, eu gostaria de informar a forma de pagamento e confirmar pedido
 - **Tarefas e responsáveis:**
   - Desenvolver a interface de escolha de forma de pagamento [Esdras Almeida - Back-end]
   - Testar a interface de pagamento [Mariana Vieira - Full-stack]
