@@ -152,3 +152,6 @@ O backlog da sprint detalha as histórias de usuário que serão trabalhadas dur
 ![Página de login](img/login.png)
 
 ![Página de administrador](img/admin.png)
+
+# Gráfico Insights Contributors
+![Página de administrador](img/Contributos.png)
